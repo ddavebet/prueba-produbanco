@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TransaccionService.Application.Abstractions.Services;
+using TransaccionService.Infrastructure.Services;
 
 namespace TransaccionService.Infrastructure
 {
@@ -14,6 +16,11 @@ namespace TransaccionService.Infrastructure
             services.AddDbContext<TransaccionDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("TransaccionDb"))
             );
+
+            services.AddHttpClient<IProductoClient, ProductoClient>(client =>
+            {
+                client.BaseAddress = new Uri(configuration["Services:ProductoService"]);
+            });
 
             return services;
         }
