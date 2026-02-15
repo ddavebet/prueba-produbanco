@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/ProductoService/">
+    <Project Path="ProductoService/ProductoService.Api/ProductoService.Api.csproj" Id="ca9b6d4e-c437-4987-936a-a22ad4f8eace" />
+    <Project Path="ProductoService/ProductoService.Application/ProductoService.Application.csproj" Id="6a9d8085-fb02-4618-9761-32a71e3f402a" />
+    <Project Path="ProductoService/ProductoService.Domain/ProductoService.Domain.csproj" Id="427bcc52-409f-4281-a653-34761bf3ff2f" />
+    <Project Path="ProductoService/ProductoService.Infrastructure/ProductoService.Infrastructure.csproj" Id="8bafa931-45fd-481e-80cf-ed27dcc5910c" />
+  </Folder>
+  <Folder Name="/TransaccionService/">
+    <Project Path="TransaccionService/TransaccionService.Api/TransaccionService.Api.csproj" Id="c3812a30-0003-4a62-8d3c-6717edd6753f" />
+    <Project Path="TransaccionService/TransaccionService.Application/TransaccionService.Application.csproj" Id="d0867a02-bf8f-4fea-9870-df18bfcf8bf9" />
+    <Project Path="TransaccionService/TransaccionService.Domain/TransaccionService.Domain.csproj" Id="76ce538f-b729-467e-9510-cdc3776f5b72" />
+    <Project Path="TransaccionService/TransaccionService.Infrastructure/TransaccionService.Infrastructure.csproj" Id="5b26f4ae-ae60-4ea7-9018-411d942ac7bc" />
+  </Folder>
+</Solution>
