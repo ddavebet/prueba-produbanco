@@ -6,13 +6,14 @@ import {
   TransaccionDto,
   TransaccionResultadoDto,
 } from '../../../core/models/transaccion.model';
+import { environment as env } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransaccionService {
   private httpClient = inject(HttpClient);
-  private baseUrl = 'https://localhost:7015/api/';
+  private apiUrl = `${env.transaccionApiUrl}/api/`;
 
   transacciones = new BehaviorSubject<TransaccionDto[]>([]);
 
@@ -46,7 +47,7 @@ export class TransaccionService {
     }
 
     return this.httpClient.get<TransaccionResultadoDto>(
-      `${this.baseUrl}transacciones`,
+      `${this.apiUrl}transacciones`,
       { params },
     );
   }
