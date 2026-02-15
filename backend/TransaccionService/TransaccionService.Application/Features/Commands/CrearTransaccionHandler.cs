@@ -6,7 +6,7 @@ using TransaccionService.Domain.Enums;
 
 namespace TransaccionService.Application.Features.Commands
 {
-    internal class CrearTransaccionHandler
+    public class CrearTransaccionHandler
     {
         private readonly ITransaccionRepository _repository;
         private readonly IProductoClient _productoClient;
