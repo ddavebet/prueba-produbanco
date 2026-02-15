@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductoService.Application.Abstractions.Persistence;
 using ProductoService.Domain.Entities;
-using ProductoService.Domain.IRepositories;
 
 namespace ProductoService.Infrastructure.Repositories
 {

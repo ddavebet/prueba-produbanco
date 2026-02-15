@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProductoService.Domain.IRepositories;
+using ProductoService.Application.Abstractions.Persistence;
 using ProductoService.Infrastructure.Repositories;
 
 namespace ProductoService.Infrastructure

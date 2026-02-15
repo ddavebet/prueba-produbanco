@@ -1,6 +1,6 @@
 ﻿using ProductoService.Domain.Entities;
 
-namespace ProductoService.Domain.IRepositories
+namespace ProductoService.Application.Abstractions.Persistence
 {
     public interface IProductoRepository
     {
