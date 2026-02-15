@@ -22,7 +22,7 @@ namespace TransaccionService.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Obtener(
+        public async Task<ActionResult<TransaccionResultadoDto>> Obtener(
             [FromQuery] FiltrarTransaccionDto filtro,
             CancellationToken ct
         )
