@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ProductoService.Application.Features.Commands;
+using ProductoService.Application.Features.Queries;
 
 namespace ProductoService.Application
 {
@@ -7,6 +8,8 @@ namespace ProductoService.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddScoped<ObtenerProductosHandler>();
+            services.AddScoped<ObtenerProductoPorIdHandler>();
             services.AddScoped<CrearProductoHandler>();
             services.AddScoped<ActualizarProductoHandler>();
             services.AddScoped<EliminarProductoHandler>();
