@@ -10,6 +10,7 @@ namespace ProductoService.Application
         {
             services.AddScoped<ObtenerProductosHandler>();
             services.AddScoped<ObtenerProductoPorIdHandler>();
+            services.AddScoped<ObtenerProductosPorIdsHandler>();
             services.AddScoped<CrearProductoHandler>();
             services.AddScoped<ActualizarProductoHandler>();
             services.AddScoped<EliminarProductoHandler>();

@@ -3,7 +3,6 @@ using ProductoService.Application.Abstractions.Persistence;
 using ProductoService.Application.DTOs;
 using ProductoService.Domain.Entities;
 using ProductoService.Domain.Enums;
-using static System.Net.WebRequestMethods;
 
 namespace ProductoService.Infrastructure.Repositories
 {
@@ -64,6 +63,17 @@ namespace ProductoService.Infrastructure.Repositories
         {
             var entity = await _context.Productos.FindAsync(id, ct);
             return entity;
+        }
+
+        public async Task<IEnumerable<Producto?>> GetByIdsAsync(
+            IEnumerable<Guid> ids,
+            CancellationToken ct = default
+        )
+        {
+            return await _context
+                .Productos.AsNoTracking()
+                .Where(p => ids.Contains(p.Id))
+                .ToListAsync(ct);
         }
 
         public async Task<bool> ExistsAsync(string nombre, CancellationToken ct = default)

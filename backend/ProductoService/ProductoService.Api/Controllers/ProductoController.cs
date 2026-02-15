@@ -11,6 +11,7 @@ namespace ProductoService.Api.Controllers
     {
         private readonly ObtenerProductosHandler _obtenerHandler;
         private readonly ObtenerProductoPorIdHandler _obtenerPorIdHandler;
+        private readonly ObtenerProductosPorIdsHandler _obtenerPorIdsHandler;
         private readonly CrearProductoHandler _crearHandler;
         private readonly ActualizarProductoHandler _actualizarHandler;
         private readonly EliminarProductoHandler _eliminarHandler;
@@ -18,8 +19,9 @@ namespace ProductoService.Api.Controllers
         private readonly DisminuirStockHandler _disminuirStockHandler;
 
         public ProductoController(
-            ObtenerProductoPorIdHandler obtenerPorIdHandler,
             ObtenerProductosHandler obtenerHandler,
+            ObtenerProductoPorIdHandler obtenerPorIdHandler,
+            ObtenerProductosPorIdsHandler obtenerPorIdsHandler,
             CrearProductoHandler crearHandler,
             ActualizarProductoHandler actualizarHandler,
             EliminarProductoHandler eliminarHandler,
@@ -29,6 +31,7 @@ namespace ProductoService.Api.Controllers
         {
             _obtenerHandler = obtenerHandler;
             _obtenerPorIdHandler = obtenerPorIdHandler;
+            _obtenerPorIdsHandler = obtenerPorIdsHandler;
             _crearHandler = crearHandler;
             _actualizarHandler = actualizarHandler;
             _eliminarHandler = eliminarHandler;
@@ -41,6 +44,16 @@ namespace ProductoService.Api.Controllers
         {
             var producto = await _obtenerPorIdHandler.Handle(id, ct);
             return Ok(producto);
+        }
+
+        [HttpPost("batch")]
+        public async Task<ActionResult<IEnumerable<ProductoInfoDto>>> ObtenerPorIds(
+            [FromBody] IEnumerable<Guid> ids,
+            CancellationToken ct
+        )
+        {
+            var result = await _obtenerPorIdsHandler.Handle(ids, ct);
+            return Ok(result);
         }
 
         [HttpGet]

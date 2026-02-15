@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using TransaccionService.Application.Abstractions.Services;
+using TransaccionService.Application.DTOs;
 
 namespace TransaccionService.Infrastructure.Services
 {
@@ -10,6 +11,17 @@ namespace TransaccionService.Infrastructure.Services
         public ProductoClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
+        }
+
+        public async Task<IEnumerable<ProductoInfoDto>> ObtenerProductosPorIdsAsync(
+            IEnumerable<Guid> productoIds
+        )
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/productos/batch", productoIds);
+
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadFromJsonAsync<IEnumerable<ProductoInfoDto>>() ?? [];
         }
 
         public async Task<bool> ExisteProductoAsync(Guid productoId)

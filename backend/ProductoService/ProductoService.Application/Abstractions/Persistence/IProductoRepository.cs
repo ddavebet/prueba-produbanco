@@ -11,6 +11,10 @@ namespace ProductoService.Application.Abstractions.Persistence
             CancellationToken ct = default
         );
         Task<Producto?> GetByIdAsync(Guid id, CancellationToken ct = default);
+        Task<IEnumerable<Producto?>> GetByIdsAsync(
+            IEnumerable<Guid> ids,
+            CancellationToken ct = default
+        );
         Task<bool> ExistsAsync(string nombre, CancellationToken ct = default);
         Task<bool> ExistsAnotherAsync(Guid id, string nombre, CancellationToken ct = default);
         Task AddAsync(Producto entity, CancellationToken ct = default);
