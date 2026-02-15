@@ -1,17 +1,17 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { TransaccionDto } from '../../../core/models/transaccion.model';
-import { TransaccionService } from '../services/transaccion.service';
 import { TableModule } from 'primeng/table';
+import { TransaccionService } from '../../services/transaccion.service';
+import { TransaccionDto } from '../../../../core/models/transaccion.model';
 
 @Component({
-  selector: 'app-transactions-page',
+  selector: 'app-transaccion-listado-page',
   standalone: true,
   imports: [CommonModule, DatePipe, TableModule],
-  templateUrl: './transaccion-page.component.html',
+  templateUrl: './transaccion-listado-page.component.html',
 })
-export class TransaccionPageComponent implements OnInit, OnDestroy {
+export class TransaccionListadoPageComponent implements OnInit, OnDestroy {
   private transaccionService = inject(TransaccionService);
 
   cargando = false;

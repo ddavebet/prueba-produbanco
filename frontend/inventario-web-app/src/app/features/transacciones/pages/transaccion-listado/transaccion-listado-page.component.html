@@ -1,0 +1,35 @@
+<h2>Listado de transacciones</h2>
+<p-table
+  #dt
+  dataKey="id"
+  [value]="transacciones"
+  [paginator]="true"
+  [rows]="20"
+  [loading]="cargando"
+>
+  <ng-template #header>
+    <tr>
+      <th>Tipo</th>
+      <th>Fecha</th>
+      <th>Producto</th>
+      <th>Stock</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario</th>
+      <th>Precio Total</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-transaccion>
+    <tr>
+      <td>{{ transaccion.tipo }}</td>
+      <td>{{ transaccion.fecha | date: "short" }}</td>
+      <td>{{ transaccion.productoNombre }}</td>
+      <td>{{ transaccion.productoStock }}</td>
+      <td>{{ transaccion.cantidad }}</td>
+      <td>{{ transaccion.precioUnitario | currency }}</td>
+      <td>{{ transaccion.precioTotal | currency }}</td>
+      <td></td>
+    </tr>
+  </ng-template>
+</p-table>
