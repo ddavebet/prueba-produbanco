@@ -14,13 +14,17 @@ namespace ProductoService.Api.Controllers
         private readonly CrearProductoHandler _crearHandler;
         private readonly ActualizarProductoHandler _actualizarHandler;
         private readonly EliminarProductoHandler _eliminarHandler;
+        private readonly AumentarStockHandler _aumentarStockHandler;
+        private readonly DisminuirStockHandler _disminuirStockHandler;
 
         public ProductoController(
-            ObtenerProductosHandler obtenerHandler,
             ObtenerProductoPorIdHandler obtenerPorIdHandler,
+            ObtenerProductosHandler obtenerHandler,
             CrearProductoHandler crearHandler,
             ActualizarProductoHandler actualizarHandler,
-            EliminarProductoHandler eliminarHandler
+            EliminarProductoHandler eliminarHandler,
+            AumentarStockHandler aumentarStockHandler,
+            DisminuirStockHandler disminuirStockHandler
         )
         {
             _obtenerHandler = obtenerHandler;
@@ -28,17 +32,19 @@ namespace ProductoService.Api.Controllers
             _crearHandler = crearHandler;
             _actualizarHandler = actualizarHandler;
             _eliminarHandler = eliminarHandler;
+            _aumentarStockHandler = aumentarStockHandler;
+            _disminuirStockHandler = disminuirStockHandler;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductoDto>> GetById(Guid id, CancellationToken ct)
+        public async Task<ActionResult<ProductoDto>> ObtenerPorId(Guid id, CancellationToken ct)
         {
             var producto = await _obtenerPorIdHandler.Handle(id, ct);
             return Ok(producto);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> Obtener(
             [FromQuery] FiltrarProductoDto filtro,
             CancellationToken ct
         )
@@ -48,14 +54,14 @@ namespace ProductoService.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CrearProductoDto dto, CancellationToken ct)
+        public async Task<IActionResult> Crear(CrearProductoDto dto, CancellationToken ct)
         {
             var id = await _crearHandler.Handle(dto, ct);
-            return CreatedAtAction(nameof(GetById), new { id }, id);
+            return CreatedAtAction(nameof(ObtenerPorId), new { id }, id);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(
+        public async Task<IActionResult> Actualizar(
             Guid id,
             ActualizarProductoDto request,
             CancellationToken ct
@@ -66,9 +72,31 @@ namespace ProductoService.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
+        public async Task<IActionResult> Eliminar(Guid id, CancellationToken ct)
         {
             await _eliminarHandler.Handle(id, ct);
+            return NoContent();
+        }
+
+        [HttpPatch("{id}/aumentar-stock")]
+        public async Task<IActionResult> AumentarStock(
+            Guid id,
+            [FromBody] int cantidad,
+            CancellationToken ct
+        )
+        {
+            await _aumentarStockHandler.Handle(id, cantidad, ct);
+            return NoContent();
+        }
+
+        [HttpPatch("{id}/disminuir-stock")]
+        public async Task<IActionResult> DisminuirStock(
+            Guid id,
+            [FromBody] int cantidad,
+            CancellationToken ct
+        )
+        {
+            await _disminuirStockHandler.Handle(id, cantidad, ct);
             return NoContent();
         }
     }

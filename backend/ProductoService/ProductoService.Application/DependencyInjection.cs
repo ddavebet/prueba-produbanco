@@ -13,6 +13,8 @@ namespace ProductoService.Application
             services.AddScoped<CrearProductoHandler>();
             services.AddScoped<ActualizarProductoHandler>();
             services.AddScoped<EliminarProductoHandler>();
+            services.AddScoped<AumentarStockHandler>();
+            services.AddScoped<DisminuirStockHandler>();
 
             return services;
         }
