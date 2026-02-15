@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProductoService.Domain.IRepositories;
+using ProductoService.Infrastructure.Repositories;
 
 namespace ProductoService.Infrastructure
 {
@@ -14,6 +16,8 @@ namespace ProductoService.Infrastructure
             services.AddDbContext<ProductoDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("ProductoDb"))
             );
+
+            services.AddScoped<IProductoRepository, ProductoRepository>();
 
             return services;
         }
