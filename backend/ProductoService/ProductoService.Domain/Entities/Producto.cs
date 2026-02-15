@@ -48,6 +48,29 @@ namespace ProductoService.Domain.Entities
             Stock = stock;
         }
 
+        public void Actualizar(
+            string nombre,
+            string descripcion,
+            Categoria categoria,
+            string imagen,
+            decimal precio
+        )
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                throw new DomainException("El nombre no puede estar vacío.");
+            }
+            if (precio < 0)
+            {
+                throw new DomainException("El precio no puede ser negativo.");
+            }
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Categoria = categoria;
+            Imagen = imagen;
+            Precio = precio;
+        }
+
         public void AumentarStock(int cantidad)
         {
             if (cantidad <= 0)
