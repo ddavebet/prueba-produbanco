@@ -1,0 +1,24 @@
+<div class="layout">
+  <header class="topbar">
+    <h1>Gestión de Inventario</h1>
+  </header>
+
+  <div class="content">
+    <nav class="sidebar">
+      <ul>
+        <li>
+          <a routerLink="/productos" routerLinkActive="active">Productos</a>
+        </li>
+        <li>
+          <a routerLink="/transacciones" routerLinkActive="active">
+            Transacciones
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
