@@ -1,0 +1,23 @@
+<p-table #dt dataKey="id" [value]="transacciones" [loading]="cargando">
+  <ng-template #header>
+    <tr>
+      <th>Producto</th>
+      <th>Stock</th>
+      <th>Cantidad</th>
+      <th>Tipo</th>
+      <th>Total</th>
+      <th>Fecha</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-transaccion>
+    <tr>
+      <td>{{ transaccion.productoNombre }}</td>
+      <td>{{ transaccion.productoStock }}</td>
+      <td>{{ transaccion.cantidad }}</td>
+      <td>{{ transaccion.tipo }}</td>
+      <td>{{ transaccion.precioTotal | currency }}</td>
+      <td>{{ transaccion.fecha | date: "short" }}</td>
+    </tr>
+  </ng-template>
+</p-table>
