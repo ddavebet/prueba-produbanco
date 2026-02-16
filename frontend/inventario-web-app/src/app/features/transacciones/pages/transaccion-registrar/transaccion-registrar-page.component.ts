@@ -10,8 +10,11 @@ import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { SelectModule } from 'primeng/select';
 import { ToastModule } from 'primeng/toast';
+import { ProductoDto } from '../../../../core/models/producto.model';
 import { CrearTransaccionDto } from '../../../../core/models/transaccion.model';
+import { ProductoService } from '../../../../core/service/producto.service';
 import { TransaccionService } from '../../../../core/service/transaccion.service';
 
 @Component({
@@ -23,6 +26,7 @@ import { TransaccionService } from '../../../../core/service/transaccion.service
     InputTextModule,
     RadioButtonModule,
     ReactiveFormsModule,
+    SelectModule,
     ToastModule,
   ],
   providers: [MessageService],
@@ -31,12 +35,19 @@ import { TransaccionService } from '../../../../core/service/transaccion.service
 export class TransaccionRegistrarPageComponent {
   private messageService = inject(MessageService);
   private transaccionService = inject(TransaccionService);
+  private productoService = inject(ProductoService);
   private fb = inject(FormBuilder);
 
-  productos = [];
+  productos: ProductoDto[] = [];
   registrarForm: FormGroup;
 
   constructor() {
+    this.productoService.obtener().subscribe({
+      next: (result) => {
+        this.productos = result.productos ?? [];
+      },
+    });
+
     this.registrarForm = this.fb.group({
       tipo: [null, Validators.required],
       productoId: [null, Validators.required],

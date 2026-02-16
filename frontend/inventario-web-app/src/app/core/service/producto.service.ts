@@ -18,12 +18,12 @@ export class ProductoService {
   productos = new BehaviorSubject<ProductoDto[]>([]);
 
   obtener(
-    nombre: string | undefined,
-    categoria: number | undefined,
-    precioMin: number | undefined,
-    precioMax: number | undefined,
-    pagina: number | undefined,
-    tamano: number | undefined,
+    nombre: string | undefined = undefined,
+    categoria: number | undefined = undefined,
+    precioMin: number | undefined = undefined,
+    precioMax: number | undefined = undefined,
+    pagina: number | undefined = undefined,
+    tamano: number | undefined = undefined,
   ) {
     let params = new HttpParams();
 

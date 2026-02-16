@@ -26,12 +26,12 @@
 
   <div class="form-group">
     <label htmlFor="productoId">Producto:</label>
-    <input
-      pInputText
-      id="productoId"
-      type="text"
+    <p-select
       formControlName="productoId"
-      placeholder="Ingrese el ID del producto"
+      [options]="productos"
+      optionLabel="nombre"
+      optionValue="id"
+      placeholder="Seleccione un producto"
     />
   </div>
 

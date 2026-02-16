@@ -49,7 +49,8 @@ p-button {
   cursor: pointer;
 }
 
-p-inputnumber {
+p-inputnumber,
+p-select {
   width: 100%;
 }
 
