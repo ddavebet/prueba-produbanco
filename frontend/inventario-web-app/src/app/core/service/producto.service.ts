@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment as env } from '../../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import {
+  ActualizarProductoDto,
   CrearProductoDto,
   ProductoDto,
   ProductoResultadoDto,
@@ -16,6 +17,7 @@ export class ProductoService {
   private apiUrl = `${env.productoApiUrl}/api/`;
 
   productos = new BehaviorSubject<ProductoDto[]>([]);
+  idSeleccionado = new BehaviorSubject<string | null>(null);
 
   obtener(
     nombre: string | undefined = undefined,
@@ -52,7 +54,9 @@ export class ProductoService {
     );
   }
 
-  obtenerPorId(id: string) {}
+  obtenerPorId(id: string) {
+    return this.httpClient.get<ProductoDto>(`${this.apiUrl}productos/${id}`);
+  }
 
   crear(producto: CrearProductoDto) {
     return this.httpClient.post<ProductoDto>(
@@ -61,7 +65,14 @@ export class ProductoService {
     );
   }
 
-  actualizar() {}
+  actualizar(id: string, producto: ActualizarProductoDto) {
+    return this.httpClient.put<ProductoDto>(
+      `${this.apiUrl}productos/${id}`,
+      producto,
+    );
+  }
 
-  eliminar() {}
+  eliminar(id: string) {
+    return this.httpClient.delete(`${this.apiUrl}productos/${id}`);
+  }
 }
