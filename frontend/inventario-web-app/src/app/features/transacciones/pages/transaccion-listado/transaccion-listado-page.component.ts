@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { Subscription } from 'rxjs';
 import { TransaccionDto } from '../../../../core/models/transaccion.model';
-import { TransaccionService } from '../../services/transaccion.service';
+import { TransaccionService } from '../../../../core/service/transaccion.service';
 
 @Component({
   selector: 'app-transaccion-listado-page',

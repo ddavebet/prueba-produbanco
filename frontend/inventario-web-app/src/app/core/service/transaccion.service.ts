@@ -1,12 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { environment as env } from '../../../../environments/environment';
+import { environment as env } from '../../../environments/environment';
 import {
   CrearTransaccionDto,
   TransaccionDto,
   TransaccionResultadoDto,
-} from '../../../core/models/transaccion.model';
+} from '../models/transaccion.model';
 
 @Injectable({
   providedIn: 'root',

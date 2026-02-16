@@ -12,7 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ToastModule } from 'primeng/toast';
 import { CrearTransaccionDto } from '../../../../core/models/transaccion.model';
-import { TransaccionService } from '../../services/transaccion.service';
+import { TransaccionService } from '../../../../core/service/transaccion.service';
 
 @Component({
   selector: 'app-transaccion-registrar-page',
