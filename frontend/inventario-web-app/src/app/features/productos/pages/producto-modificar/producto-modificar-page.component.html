@@ -1,0 +1,86 @@
+<p-toast></p-toast>
+<h2>Modificar Producto</h2>
+
+<form [formGroup]="modificarForm" (ngSubmit)="modificar()">
+  <div class="form-group">
+    <label htmlFor="nombre">Nombre:</label>
+    <input
+      pInputText
+      id="nombre"
+      type="text"
+      formControlName="nombre"
+      placeholder="Ingrese un nombre"
+    />
+  </div>
+
+  <div class="form-group">
+    <label htmlFor="descripcion">Descripción:</label>
+    <input
+      pInputText
+      id="descripcion"
+      type="text"
+      formControlName="descripcion"
+      placeholder="Ingrese una descripción"
+    />
+  </div>
+
+  <div class="form-group">
+    <label htmlFor="categoria">Categoría:</label>
+    <div style="display: flex; gap: 10px">
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          inputId="categoriaElectronica"
+          value="1"
+          formControlName="categoria"
+        ></p-radiobutton>
+        <label for="categoriaElectronica">Electrónica</label>
+      </div>
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          inputId="categoriaRopa"
+          value="2"
+          formControlName="categoria"
+        ></p-radiobutton>
+        <label for="categoriaRopa">Ropa</label>
+      </div>
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          inputId="categoriaHogar"
+          value="3"
+          formControlName="categoria"
+        ></p-radiobutton>
+        <label for="categoriaHogar">Hogar</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label htmlFor="precio">Precio:</label>
+    <p-inputnumber
+      id="precio"
+      inputId="precio"
+      formControlName="precio"
+      [min]="0.01"
+      mode="currency"
+      currency="USD"
+      placeholder="Ingrese el precio"
+    ></p-inputnumber>
+  </div>
+
+  <div class="form-group">
+    <label htmlFor="stockInicial">Stock Inicial:</label>
+    <p-inputnumber
+      id="stockInicial"
+      inputId="stockInicial"
+      formControlName="stockInicial"
+      [min]="1"
+      placeholder="Ingrese el stock inicial"
+    ></p-inputnumber>
+  </div>
+
+  <p-button
+    type="submit"
+    label="Crear Producto"
+    [disabled]="modificarForm.invalid || !modificarForm.dirty"
+  ></p-button>
+</form>
