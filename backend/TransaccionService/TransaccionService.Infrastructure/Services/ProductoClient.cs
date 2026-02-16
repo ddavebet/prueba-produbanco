@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Net.Http.Json;
 using TransaccionService.Application.Abstractions.Services;
 using TransaccionService.Application.DTOs;
 
@@ -19,7 +21,16 @@ namespace TransaccionService.Infrastructure.Services
         {
             var response = await _httpClient.PostAsJsonAsync("api/productos/batch", productoIds);
 
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+
+                throw new HttpRequestException(
+                    problemDetails!.Detail,
+                    null,
+                    (HttpStatusCode)problemDetails.Status!
+                );
+            }
 
             return await response.Content.ReadFromJsonAsync<IEnumerable<ProductoInfoDto>>() ?? [];
         }
@@ -28,7 +39,16 @@ namespace TransaccionService.Infrastructure.Services
         {
             var response = await _httpClient.GetAsync($"api/productos/{productoId}");
 
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+
+                throw new HttpRequestException(
+                    problemDetails!.Detail,
+                    null,
+                    (HttpStatusCode)problemDetails.Status!
+                );
+            }
 
             return (await response.Content.ReadFromJsonAsync<ProductoDto>())!;
         }
@@ -40,7 +60,16 @@ namespace TransaccionService.Infrastructure.Services
                 cantidad
             );
 
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+
+                throw new HttpRequestException(
+                    problemDetails!.Detail,
+                    null,
+                    (HttpStatusCode)problemDetails.Status!
+                );
+            }
         }
 
         public async Task DisminuirStockAsync(Guid productoId, int cantidad)
@@ -50,7 +79,16 @@ namespace TransaccionService.Infrastructure.Services
                 cantidad
             );
 
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+
+                throw new HttpRequestException(
+                    problemDetails!.Detail,
+                    null,
+                    (HttpStatusCode)problemDetails.Status!
+                );
+            }
         }
     }
 }
