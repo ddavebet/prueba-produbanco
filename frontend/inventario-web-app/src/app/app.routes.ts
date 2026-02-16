@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { InicioComponent } from './features/inicio/inicio.component';
 import { TransaccionListadoPageComponent } from './features/transacciones/pages/transaccion-listado/transaccion-listado-page.component';
 import { TransaccionRegistrarPageComponent } from './features/transacciones/pages/transaccion-registrar/transaccion-registrar-page.component';
+import { ProductoListadoPageComponent } from './features/productos/pages/producto-listado/producto-listado-page.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,8 @@ export const routes: Routes = [
         path: 'transacciones/registrar',
         component: TransaccionRegistrarPageComponent,
       },
+      { path: 'productos', component: ProductoListadoPageComponent },
+      // { path: 'productos/crear', component: ProductoCrearPageComponent },
     ],
   },
 ];

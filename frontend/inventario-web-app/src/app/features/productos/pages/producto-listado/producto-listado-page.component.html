@@ -1,0 +1,36 @@
+<h2>Listado de productos</h2>
+<a routerLink="/productos/crear" pButton>
+  <span pButtonLabel>Nuevo producto</span>
+</a>
+<p-table
+  #dt
+  dataKey="id"
+  [value]="productos"
+  [paginator]="true"
+  [rows]="20"
+  [loading]="cargando"
+>
+  <ng-template #header>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Categoría</th>
+      <th>Imagen</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-producto>
+    <tr>
+      <td>{{ producto.nombre }}</td>
+      <td>{{ producto.descripcion }}</td>
+      <td>{{ producto.categoria }}</td>
+      <td>{{ producto.imagen }}</td>
+      <td>{{ producto.precio | currency }}</td>
+      <td>{{ producto.stock }}</td>
+      <td></td>
+    </tr>
+  </ng-template>
+</p-table>

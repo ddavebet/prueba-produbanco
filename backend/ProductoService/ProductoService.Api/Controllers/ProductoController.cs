@@ -57,7 +57,7 @@ namespace ProductoService.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Obtener(
+        public async Task<ActionResult<ProductoResultadoDto>> Obtener(
             [FromQuery] FiltrarProductoDto filtro,
             CancellationToken ct
         )
