@@ -10,7 +10,6 @@ import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { SelectModule } from 'primeng/select';
 import { ToastModule } from 'primeng/toast';
 import { CrearProductoDto } from '../../../../core/models/producto.model';
 import { ProductoService } from '../../../../core/service/producto.service';
@@ -24,7 +23,6 @@ import { ProductoService } from '../../../../core/service/producto.service';
     InputTextModule,
     RadioButtonModule,
     ReactiveFormsModule,
-    SelectModule,
     ToastModule,
   ],
   providers: [MessageService],
