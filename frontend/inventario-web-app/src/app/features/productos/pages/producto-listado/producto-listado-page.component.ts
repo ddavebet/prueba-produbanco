@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
 import { Subscription } from 'rxjs';
 import { ProductoDto } from '../../../../core/models/producto.model';
 import { ProductoService } from '../../../../core/service/producto.service';
@@ -10,11 +11,18 @@ import { ProductoService } from '../../../../core/service/producto.service';
 @Component({
   selector: 'app-producto-listado-page',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, RouterModule],
+  imports: [
+    ButtonModule,
+    CommonModule,
+    RouterModule,
+    TableModule,
+    TooltipModule,
+  ],
   templateUrl: './producto-listado-page.component.html',
 })
 export class ProductoListadoPageComponent implements OnInit, OnDestroy {
   private productoService = inject(ProductoService);
+  private router = inject(Router);
 
   cargando = false;
   productosSub!: Subscription;
@@ -43,5 +51,10 @@ export class ProductoListadoPageComponent implements OnInit, OnDestroy {
         this.productoService.productos.next(result.productos ?? []);
         this.cargando = false;
       });
+  }
+
+  navegarModificar(id: string) {
+    this.productoService.idSeleccionado.next(id);
+    this.router.navigate(['/productos/modificar']);
   }
 }

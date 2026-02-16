@@ -30,7 +30,14 @@
       <td>{{ producto.imagen }}</td>
       <td>{{ producto.precio | currency }}</td>
       <td>{{ producto.stock }}</td>
-      <td></td>
+      <td style="display: flex">
+        <p-button
+          label="Modificar"
+          variant="outlined"
+          (click)="navegarModificar(producto.id)"
+        />
+        <p-button label="Eliminar" variant="outlined" severity="danger" />
+      </td>
     </tr>
   </ng-template>
 </p-table>
