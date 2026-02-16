@@ -1,1 +1,41 @@
+<p-toast />
 <h2>Registrar Transacción</h2>
+<form [formGroup]="registrarForm" (ngSubmit)="registrar()">
+  <div>
+    <label htmlFor="tipo">Tipo:</label>
+    <div>
+      <p-radiobutton inputId="tipoCompra" value="1" formControlName="tipo" />
+      <label for="tipoCompra">Compra</label>
+    </div>
+    <div>
+      <p-radiobutton inputId="tipoVenta" value="2" formControlName="tipo" />
+      <label for="tipoVenta">Venta</label>
+    </div>
+  </div>
+  <div>
+    <label htmlFor="productoId">Producto ID:</label>
+    <input
+      pInputText
+      id="productoId"
+      type="text"
+      formControlName="productoId"
+    />
+  </div>
+  <div>
+    <label htmlFor="cantidad">Cantidad:</label>
+    <p-inputnumber
+      id="cantidad"
+      inputId="cantidad"
+      formControlName="cantidad"
+    />
+  </div>
+  <div>
+    <label htmlFor="detalle">Detalle:</label>
+    <input pInputText id="detalle" type="text" formControlName="detalle" />
+  </div>
+  <p-button
+    type="submit"
+    [disabled]="registrarForm.invalid || !registrarForm.dirty"
+    >Registrar</p-button
+  >
+</form>

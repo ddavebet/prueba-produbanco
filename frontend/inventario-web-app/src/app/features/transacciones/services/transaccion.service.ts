@@ -1,12 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment as env } from '../../../../environments/environment';
 import {
   CrearTransaccionDto,
   TransaccionDto,
   TransaccionResultadoDto,
 } from '../../../core/models/transaccion.model';
-import { environment as env } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -52,5 +52,10 @@ export class TransaccionService {
     );
   }
 
-  crear(transaccion: CrearTransaccionDto) {}
+  crear(transaccion: CrearTransaccionDto) {
+    return this.httpClient.post<TransaccionDto>(
+      `${this.apiUrl}transacciones`,
+      transaccion,
+    );
+  }
 }
