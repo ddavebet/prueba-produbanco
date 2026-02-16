@@ -1,14 +1,16 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { TransaccionService } from '../../services/transaccion.service';
+import { Subscription } from 'rxjs';
 import { TransaccionDto } from '../../../../core/models/transaccion.model';
+import { TransaccionService } from '../../services/transaccion.service';
 
 @Component({
   selector: 'app-transaccion-listado-page',
   standalone: true,
-  imports: [CommonModule, DatePipe, TableModule],
+  imports: [CommonModule, DatePipe, TableModule, ButtonModule, RouterModule],
   templateUrl: './transaccion-listado-page.component.html',
 })
 export class TransaccionListadoPageComponent implements OnInit, OnDestroy {
@@ -36,7 +38,7 @@ export class TransaccionListadoPageComponent implements OnInit, OnDestroy {
     this.cargando = true;
     this.transaccionService.transacciones.next([]);
     this.transaccionService
-      .obtener(undefined, undefined, 1, undefined, undefined, undefined)
+      .obtener(undefined, undefined, undefined, undefined, undefined, undefined)
       .subscribe((result) => {
         this.transaccionService.transacciones.next(result.transacciones ?? []);
         this.cargando = false;
