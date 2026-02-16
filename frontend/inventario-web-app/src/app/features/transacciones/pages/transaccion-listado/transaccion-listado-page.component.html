@@ -19,6 +19,7 @@
       <th>Cantidad</th>
       <th>Precio Unitario</th>
       <th>Precio Total</th>
+      <th>Detalle</th>
       <th>Acciones</th>
     </tr>
   </ng-template>
@@ -32,6 +33,7 @@
       <td>{{ transaccion.cantidad }}</td>
       <td>{{ transaccion.precioUnitario | currency }}</td>
       <td>{{ transaccion.precioTotal | currency }}</td>
+      <td>{{ transaccion.detalle }}</td>
       <td></td>
     </tr>
   </ng-template>
