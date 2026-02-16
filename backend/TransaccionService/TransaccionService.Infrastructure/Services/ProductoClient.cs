@@ -24,11 +24,13 @@ namespace TransaccionService.Infrastructure.Services
             return await response.Content.ReadFromJsonAsync<IEnumerable<ProductoInfoDto>>() ?? [];
         }
 
-        public async Task<bool> ExisteProductoAsync(Guid productoId)
+        public async Task<ProductoDto> ObtenerProductoPorIdAsync(Guid productoId)
         {
             var response = await _httpClient.GetAsync($"api/productos/{productoId}");
 
-            return response.IsSuccessStatusCode;
+            response.EnsureSuccessStatusCode();
+
+            return (await response.Content.ReadFromJsonAsync<ProductoDto>())!;
         }
 
         public async Task AumentarStockAsync(Guid productoId, int cantidad)

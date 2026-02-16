@@ -22,8 +22,8 @@ namespace TransaccionService.Application.Features.Commands
 
         public async Task<Guid> Handle(CrearTransaccionDto dto, CancellationToken ct = default)
         {
-            var existeProducto = await _productoClient.ExisteProductoAsync(dto.ProductoId);
-            if (!existeProducto)
+            var producto = await _productoClient.ObtenerProductoPorIdAsync(dto.ProductoId);
+            if (producto == null)
             {
                 throw new InvalidOperationException("Producto no encontrado.");
             }
@@ -41,11 +41,11 @@ namespace TransaccionService.Application.Features.Commands
                 (TipoTransaccion)dto.Tipo,
                 dto.ProductoId,
                 dto.Cantidad,
-                dto.PrecioUnitario,
+                producto.Precio,
                 dto.Detalle
             );
 
-            await _repository.AddAsync(transaction);
+            await _repository.AddAsync(transaction, ct);
 
             return transaction.Id;
         }

@@ -14,7 +14,7 @@ namespace ProductoService.Application.Features.Queries
 
         public async Task<ProductoDto> Handle(Guid id, CancellationToken ct)
         {
-            var producto = await _repository.GetByIdAsync(id);
+            var producto = await _repository.GetByIdAsync(id, ct);
             if (producto == null)
             {
                 throw new InvalidOperationException("Producto no encontrado.");
