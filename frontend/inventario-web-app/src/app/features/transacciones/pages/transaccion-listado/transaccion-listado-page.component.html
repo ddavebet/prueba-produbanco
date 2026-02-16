@@ -1,23 +1,38 @@
 <h2>Historial de transacciones</h2>
 
-<div class="filter-container">
-  <label for="fechaInicio">Fecha Inicio:</label>
-  <p-datepicker
-    id="fechaInicio"
-    [(ngModel)]="filtros.fechaInicio"
-    [showClear]="true"
-  ></p-datepicker>
+<div
+  class="filter-container"
+  style="
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  "
+>
+  <div>
+    <label for="fechaInicio">Fecha Inicio:</label>
+    <p-datepicker
+      id="fechaInicio"
+      [(ngModel)]="filtros.fechaInicio"
+      [showClear]="true"
+    ></p-datepicker>
+  </div>
 
-  <label for="fechaFin">Fecha Fin:</label>
-  <p-datepicker
-    id="fechaFin"
-    [(ngModel)]="filtros.fechaFin"
-    [showClear]="true"
-  ></p-datepicker>
+  <div>
+    <label for="fechaFin">Fecha Fin:</label>
+    <p-datepicker
+      id="fechaFin"
+      [(ngModel)]="filtros.fechaFin"
+      [showClear]="true"
+    ></p-datepicker>
+  </div>
 
-  <div class="form-group">
+  <div>
     <label for="tipo">Tipo de transacción:</label>
-    <div style="display: flex; gap: 10px">
+    <div style="display: flex; gap: 10px; align-items: center; height: 2.23rem">
       <div style="display: flex; gap: 5px">
         <p-radiobutton
           name="tipo"
@@ -48,7 +63,7 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div>
     <label htmlFor="productoId">Producto:</label>
     <p-select
       [(ngModel)]="filtros.productoId"
@@ -60,7 +75,9 @@
     />
   </div>
 
-  <button pButton (click)="cargar()">Filtrar</button>
+  <div style="display: flex; align-items: end">
+    <button pButton class="p-button-primary" (click)="cargar()">Filtrar</button>
+  </div>
 </div>
 
 <a routerLink="/transacciones/registrar" pButton>
