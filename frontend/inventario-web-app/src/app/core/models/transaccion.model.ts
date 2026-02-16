@@ -2,7 +2,6 @@ export interface CrearTransaccionDto {
   tipo?: number;
   productoId?: string;
   cantidad?: number;
-  precioUnitario?: number;
   detalle?: string | undefined;
 }
 
