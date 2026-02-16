@@ -18,12 +18,12 @@ export class TransaccionService {
   transacciones = new BehaviorSubject<TransaccionDto[]>([]);
 
   obtener(
-    fechaInicio: Date | undefined,
-    fechaFin: Date | undefined,
-    tipo: number | undefined,
-    productoId: string | undefined,
-    pagina: number | undefined,
-    tamano: number | undefined,
+    fechaInicio: Date | undefined = undefined,
+    fechaFin: Date | undefined = undefined,
+    tipo: number | undefined = undefined,
+    productoId: string | undefined = undefined,
+    pagina: number | undefined = undefined,
+    tamano: number | undefined = undefined,
   ) {
     let params = new HttpParams();
 

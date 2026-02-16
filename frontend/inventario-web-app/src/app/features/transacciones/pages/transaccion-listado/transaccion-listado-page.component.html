@@ -1,7 +1,72 @@
-<h2>Listado de transacciones</h2>
+<h2>Historial de transacciones</h2>
+
+<div class="filter-container">
+  <label for="fechaInicio">Fecha Inicio:</label>
+  <p-datepicker
+    id="fechaInicio"
+    [(ngModel)]="filtros.fechaInicio"
+    [showClear]="true"
+  ></p-datepicker>
+
+  <label for="fechaFin">Fecha Fin:</label>
+  <p-datepicker
+    id="fechaFin"
+    [(ngModel)]="filtros.fechaFin"
+    [showClear]="true"
+  ></p-datepicker>
+
+  <div class="form-group">
+    <label for="tipo">Tipo de transacción:</label>
+    <div style="display: flex; gap: 10px">
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          name="tipo"
+          [value]="undefined"
+          [(ngModel)]="filtros.tipo"
+          inputId="tipoTodos"
+        />
+        <label for="tipoTodos">Todos</label>
+      </div>
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          name="tipo"
+          value="1"
+          [(ngModel)]="filtros.tipo"
+          inputId="tipoCompra"
+        />
+        <label for="tipoCompra">Compra</label>
+      </div>
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          name="tipo"
+          value="2"
+          [(ngModel)]="filtros.tipo"
+          inputId="tipoVenta"
+        />
+        <label for="tipoVenta">Venta</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label htmlFor="productoId">Producto:</label>
+    <p-select
+      [(ngModel)]="filtros.productoId"
+      [options]="productos"
+      optionLabel="nombre"
+      optionValue="id"
+      placeholder="Seleccione un producto"
+      [showClear]="true"
+    />
+  </div>
+
+  <button pButton (click)="cargar()">Filtrar</button>
+</div>
+
 <a routerLink="/transacciones/registrar" pButton>
   <span pButtonLabel>Nueva transacción</span>
 </a>
+
 <p-table
   #dt
   dataKey="id"
