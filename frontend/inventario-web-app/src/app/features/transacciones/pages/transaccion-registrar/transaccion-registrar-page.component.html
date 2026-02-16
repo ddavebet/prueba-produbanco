@@ -1,41 +1,65 @@
-<p-toast />
+<p-toast></p-toast>
 <h2>Registrar Transacción</h2>
+
 <form [formGroup]="registrarForm" (ngSubmit)="registrar()">
-  <div>
-    <label htmlFor="tipo">Tipo:</label>
-    <div>
-      <p-radiobutton inputId="tipoCompra" value="1" formControlName="tipo" />
-      <label for="tipoCompra">Compra</label>
-    </div>
-    <div>
-      <p-radiobutton inputId="tipoVenta" value="2" formControlName="tipo" />
-      <label for="tipoVenta">Venta</label>
+  <div class="form-group">
+    <label htmlFor="tipo">Tipo de transacción:</label>
+    <div style="display: flex; gap: 10px">
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          inputId="tipoCompra"
+          value="1"
+          formControlName="tipo"
+        ></p-radiobutton>
+        <label for="tipoCompra">Compra</label>
+      </div>
+      <div style="display: flex; gap: 5px">
+        <p-radiobutton
+          inputId="tipoVenta"
+          value="2"
+          formControlName="tipo"
+        ></p-radiobutton>
+        <label for="tipoVenta">Venta</label>
+      </div>
     </div>
   </div>
-  <div>
-    <label htmlFor="productoId">Producto ID:</label>
+
+  <div class="form-group">
+    <label htmlFor="productoId">Producto:</label>
     <input
       pInputText
       id="productoId"
       type="text"
       formControlName="productoId"
+      placeholder="Ingrese el ID del producto"
     />
   </div>
-  <div>
+
+  <div class="form-group">
     <label htmlFor="cantidad">Cantidad:</label>
     <p-inputnumber
       id="cantidad"
       inputId="cantidad"
       formControlName="cantidad"
+      [min]="1"
+      placeholder="Ingrese la cantidad"
+    ></p-inputnumber>
+  </div>
+
+  <div class="form-group">
+    <label htmlFor="detalle">Detalle:</label>
+    <input
+      pInputText
+      id="detalle"
+      type="text"
+      formControlName="detalle"
+      placeholder="Ingrese un detalle"
     />
   </div>
-  <div>
-    <label htmlFor="detalle">Detalle:</label>
-    <input pInputText id="detalle" type="text" formControlName="detalle" />
-  </div>
+
   <p-button
     type="submit"
+    label="Registrar"
     [disabled]="registrarForm.invalid || !registrarForm.dirty"
-    >Registrar</p-button
-  >
+  ></p-button>
 </form>
