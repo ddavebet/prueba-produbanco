@@ -14,7 +14,6 @@ namespace TransaccionService.Api
             var statusCode = exception switch
             {
                 InvalidOperationException => StatusCodes.Status400BadRequest,
-                HttpRequestException => StatusCodes.Status503ServiceUnavailable,
                 _ => StatusCodes.Status500InternalServerError,
             };
 
