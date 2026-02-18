@@ -66,10 +66,7 @@ export class ProductoService {
   }
 
   actualizar(id: string, producto: ActualizarProductoDto) {
-    return this.httpClient.put<ProductoDto>(
-      `${this.apiUrl}productos/${id}`,
-      producto,
-    );
+    return this.httpClient.put<any>(`${this.apiUrl}productos/${id}`, producto);
   }
 
   eliminar(id: string) {

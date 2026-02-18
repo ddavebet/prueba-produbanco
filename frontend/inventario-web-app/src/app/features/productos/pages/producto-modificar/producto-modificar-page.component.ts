@@ -36,6 +36,7 @@ export class ProductoModificarPageComponent implements OnInit, OnDestroy {
 
   modificarForm: FormGroup;
   idSeleccionadoSub!: Subscription;
+  idSeleccionado: string | undefined;
 
   constructor() {
     this.modificarForm = this.fb.group({
@@ -51,6 +52,7 @@ export class ProductoModificarPageComponent implements OnInit, OnDestroy {
     this.idSeleccionadoSub = this.productoService.idSeleccionado.subscribe(
       (id) => {
         if (id) {
+          this.idSeleccionado = id;
           this.cargar(id);
         }
       },
@@ -79,7 +81,6 @@ export class ProductoModificarPageComponent implements OnInit, OnDestroy {
           detail: 'No se pudo cargar el producto',
           life: 3000,
         });
-        console.error(error);
       },
     });
   }
@@ -91,27 +92,28 @@ export class ProductoModificarPageComponent implements OnInit, OnDestroy {
 
       this.modificarForm.disable();
 
-      this.productoService.actualizar('', productoModificado).subscribe({
-        next: () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Info',
-            detail: 'Producto modificado exitosamente',
-            life: 3000,
-          });
-          this.modificarForm.reset();
-        },
-        error: (error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.detail,
-            life: 3000,
-          });
-          console.log(error);
-          this.modificarForm.enable();
-        },
-      });
+      this.productoService
+        .actualizar(this.idSeleccionado!, productoModificado)
+        .subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Info',
+              detail: 'Producto modificado exitosamente',
+              life: 3000,
+            });
+            this.modificarForm.reset();
+          },
+          error: (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: error.error.detail,
+              life: 3000,
+            });
+            this.modificarForm.enable();
+          },
+        });
     }
   }
 }
