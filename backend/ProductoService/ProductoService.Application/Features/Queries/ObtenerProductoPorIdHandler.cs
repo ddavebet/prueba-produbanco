@@ -25,6 +25,7 @@ namespace ProductoService.Application.Features.Queries
                 Id = producto.Id,
                 Nombre = producto.Nombre,
                 Descripcion = producto.Descripcion,
+                CategoriaId = (int)producto.Categoria,
                 Categoria = producto.Categoria.ToString(),
                 Imagen = producto.Imagen,
                 Precio = producto.Precio,

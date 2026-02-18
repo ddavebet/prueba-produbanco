@@ -1,5 +1,6 @@
 ﻿using ProductoService.Application.Abstractions.Persistence;
 using ProductoService.Application.DTOs;
+using ProductoService.Domain.Entities;
 
 namespace ProductoService.Application.Features.Queries
 {
@@ -26,6 +27,7 @@ namespace ProductoService.Application.Features.Queries
                     Id = p.Id,
                     Nombre = p.Nombre,
                     Descripcion = p.Descripcion,
+                    CategoriaId = (int)p.Categoria,
                     Categoria = p.Categoria.ToString(),
                     Imagen = p.Imagen,
                     Precio = p.Precio,
