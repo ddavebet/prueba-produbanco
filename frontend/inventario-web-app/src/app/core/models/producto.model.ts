@@ -19,6 +19,7 @@ export interface ProductoDto {
   id?: string;
   nombre?: string;
   descripcion?: string;
+  categoriaId?: number;
   categoria?: string;
   imagen?: string;
   precio?: number;

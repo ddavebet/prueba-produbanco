@@ -34,8 +34,18 @@ export class ProductoModificarPageComponent implements OnInit, OnDestroy {
   private productoService = inject(ProductoService);
   private fb = inject(FormBuilder);
 
-  modificarForm!: FormGroup;
+  modificarForm: FormGroup;
   idSeleccionadoSub!: Subscription;
+
+  constructor() {
+    this.modificarForm = this.fb.group({
+      nombre: [null, Validators.required],
+      descripcion: [null],
+      categoria: [null, Validators.required],
+      precio: [null, [Validators.required, Validators.min(0.01)]],
+      stockInicial: [null, [Validators.required, Validators.min(1)]],
+    });
+  }
 
   ngOnInit(): void {
     this.idSeleccionadoSub = this.productoService.idSeleccionado.subscribe(
@@ -54,19 +64,22 @@ export class ProductoModificarPageComponent implements OnInit, OnDestroy {
   cargar(id: string) {
     this.productoService.obtenerPorId(id).subscribe({
       next: (producto) => {
-        this.modificarForm = this.fb.group({
-          nombre: [producto.nombre, Validators.required],
-          descripcion: [producto.descripcion],
-          categoria: [producto.categoria, Validators.required],
-          precio: [
-            producto.precio,
-            [Validators.required, Validators.min(0.01)],
-          ],
-          stockInicial: [
-            producto.stock,
-            [Validators.required, Validators.min(1)],
-          ],
+        this.modificarForm.patchValue({
+          nombre: producto.nombre,
+          descripcion: producto.descripcion,
+          categoria: producto.categoriaId,
+          precio: producto.precio,
+          stockInicial: producto.stock,
         });
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'No se pudo cargar el producto',
+          life: 3000,
+        });
+        console.error(error);
       },
     });
   }
